@@ -4,6 +4,7 @@
 from pymongo import MongoClient
 
 def log_stats(logs_collection):
+    """Return the log_stats actual"""
     # Contar todos los documentos en la colección
     total_logs = logs_collection.count_documents({})
     
