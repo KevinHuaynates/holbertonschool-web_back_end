@@ -1,4 +1,4 @@
 // my comment
 
 // List all databases
-printjson(db.getMongo().getDBs());
+db.adminCommand({ listDatabases: 1 });
