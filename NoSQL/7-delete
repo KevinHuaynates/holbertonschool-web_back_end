@@ -1,0 +1,3 @@
+// my comment
+// Delete documents in the collection school with name="Holberton school"
+db.school.remove({ name: "Holberton school" });
