@@ -1,11 +1,3 @@
 // my comment
 // Delete documents in the collection school with name="Holberton school"
-var result = db.school.remove({ name: "Holberton school" });
-
-// Check if any documents were deleted
-if (result.deletedCount === undefined) {
-    // Handle the case where the 'deletedCount' property is not present
-    print({ acknowledged: false, deletedCount: 0 });
-} else {
-    print(result);
-}
+db.school.deleteMany({name: 'Holberton school'});
