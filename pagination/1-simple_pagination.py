@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 """
-Module documentation: Simple pagination method for a dataset.
+Simple Pagination
 """
 
 import csv
-from typing import List, Optional
-from 0-simple_helper_function.py import index_range  # Cambia aquí al nombre del archivo correcto
+from typing import List
+from pathlib import Path
+
+# Definir la ruta al módulo 0-simple_helper_function.py
+module_path = Path(__file__).resolve().parent / '0-simple_helper_function.py'
+# Importar la función index_range del módulo
+exec(module_path.read_text())
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -28,25 +34,25 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
-        Function documentation: Returns the specified page of the dataset.
+        Returns a paginated list of rows based on the given page and page_size.
         """
-        assert isinstance(page, int) and page > 0, "Page must be a positive integer"
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer"
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
 
+        start, end = index_range(page, page_size)
         dataset = self.dataset()
 
-        start_idx, end_idx = index_range(page, page_size)
-        if start_idx >= len(dataset):
-            return []  # Out of range, return an empty list
+        if start >= len(dataset):
+            return []
 
-        return dataset[start_idx:end_idx]
+        return dataset[start:end]
 
 
+# For testing purposes only when running this script directly
 if __name__ == "__main__":
-    # Example usage
+    # Assertions testing
     server = Server()
 
-    # Testing assertions
     try:
         should_err = server.get_page(-10, 2)
     except AssertionError:
@@ -62,7 +68,7 @@ if __name__ == "__main__":
     except AssertionError:
         print("AssertionError raised when page and/or page_size are not ints")
 
-    # Print paginated results
+    # Pagination testing
     print(server.get_page(1, 3))
     print(server.get_page(3, 2))
     print(server.get_page(3000, 100))
