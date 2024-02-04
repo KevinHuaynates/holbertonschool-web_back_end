@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
 """
-Module documentation: Hypermedia pagination method for a dataset.
+Hypermedia Pagination
 """
 
 import csv
-from typing import List, Optional
-from 0-simple_helper_function import index_range
+from typing import List, Dict, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """
+    Returns a tuple of start and end indexes for a given page and page_size.
+    """
+    start = (page - 1) * page_size
+    end = start + page_size
+    return start, end
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -28,28 +37,31 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
-        Function documentation: Returns the specified page of the dataset.
+        Returns a paginated list of rows based on the given page and page_size.
         """
-        assert isinstance(page, int) and page > 0, "Page must be a positive integer"
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer"
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
 
+        start, end = index_range(page, page_size)
         dataset = self.dataset()
 
-        start_idx, end_idx = index_range(page, page_size)
-        if start_idx >= len(dataset):
-            return []  # Out of range, return an empty list
+        if start >= len(dataset):
+            return []
 
-        return dataset[start_idx:end_idx]
+        return dataset[start:end]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
-        Function documentation: Returns hypermedia pagination information for the dataset.
+        Returns a dictionary with hypermedia pagination information.
         """
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
+
         data_page = self.get_page(page, page_size)
-        total_pages = len(self.dataset()) // page_size + (len(self.dataset()) % page_size > 0)
-
-        next_page = page + 1 if page < total_pages else None
+        next_page = page + 1 if len(data_page) == page_size else None
         prev_page = page - 1 if page > 1 else None
+        total_pages = len(self.dataset()) // page_size
+        total_pages += 1 if len(self.dataset()) % page_size > 0 else 0
 
         return {
             'page_size': len(data_page),
@@ -61,11 +73,11 @@ class Server:
         }
 
 
+# For testing purposes only when running this script directly
 if __name__ == "__main__":
-    # Example usage
+    # Hypermedia Pagination testing
     server = Server()
 
-    # Print hypermedia pagination results
     print(server.get_hyper(1, 2))
     print("---")
     print(server.get_hyper(2, 2))
