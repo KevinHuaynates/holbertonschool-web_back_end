@@ -20,10 +20,8 @@ class Server:
 
     def __init__(self):
         """
-        Inicializa un objeto Path con la cadena de ruta proporcionada.
-
-        Parámetros:
-            - __init__(self): La cadena que representa la ruta.
+        Inicializa un objeto Path.
+        No acepta parámetros.
         """
         self.__dataset = None
 
