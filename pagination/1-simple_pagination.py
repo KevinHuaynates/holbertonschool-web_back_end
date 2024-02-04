@@ -19,7 +19,11 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
-        """Cached _init
+        """
+        Inicializa un objeto Path con la cadena de ruta proporcionada.
+
+        Parámetros:
+            - __init__(self): La cadena que representa la ruta.
         """
         self.__dataset = None
 
