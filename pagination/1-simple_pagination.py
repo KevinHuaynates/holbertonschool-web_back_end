@@ -21,6 +21,7 @@ class Server:
     def __init__(self):
         """
         Inicializa un objeto Path.
+
         No acepta parámetros.
         """
         self.__dataset = None
