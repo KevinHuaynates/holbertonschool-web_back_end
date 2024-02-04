@@ -19,10 +19,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
-        """
-        Inicializa un objeto Path.
-
-        No acepta parámetros.
+        """Cached _init
         """
         self.__dataset = None
 
