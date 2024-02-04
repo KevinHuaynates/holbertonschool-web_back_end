@@ -5,7 +5,7 @@ Module documentation: Simple pagination method for a dataset.
 
 import csv
 from typing import List, Optional
-from 0-simple_helper_function import index_range  # Cambia aquí al nombre del archivo correcto
+from 0-simple_helper_function.py import index_range  # Cambia aquí al nombre del archivo correcto
 
 class Server:
     """Server class to paginate a database of popular baby names.
