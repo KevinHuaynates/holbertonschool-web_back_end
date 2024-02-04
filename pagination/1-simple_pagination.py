@@ -1,4 +1,3 @@
-# 1-simple_pagination.py
 #!/usr/bin/env python3
 """
 Module documentation: Simple pagination method for a dataset.
@@ -6,7 +5,7 @@ Module documentation: Simple pagination method for a dataset.
 
 import csv
 from typing import List, Optional
-from .0-simple_helper_function import index_range
+from pagination.0-simple_helper_function import index_range
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -38,7 +37,7 @@ class Server:
 
         start_idx, end_idx = index_range(page, page_size)
         if start_idx >= len(dataset):
-            return []  # Out of range, return empty list
+            return []  # Out of range, return an empty list
 
         return dataset[start_idx:end_idx]
 
