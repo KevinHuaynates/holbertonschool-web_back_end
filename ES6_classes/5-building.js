@@ -1,6 +1,8 @@
-// 5-building.js
-class Building {
+export default class Building {
   constructor(sqft) {
+    if (this.constructor !== Building && !this.evacuationWarningMessage) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
     this._sqft = sqft;
   }
 
@@ -8,10 +10,8 @@ class Building {
     return this._sqft;
   }
 
+  // This method should be overridden by subclasses
   evacuationWarningMessage() {
     throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
-
-export default Building;
-
