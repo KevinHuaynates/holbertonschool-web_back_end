@@ -16,11 +16,9 @@ class HolbertonClass {
   [Symbol.toPrimitive](hint) {
     if (hint === 'number') {
       return this._size;
-    } else if (hint === 'string') {
-      return this._location;
-    } else {
-      return this;
     }
+
+    return this._location; // Eliminamos el else y dejamos solo el return
   }
 }
 
