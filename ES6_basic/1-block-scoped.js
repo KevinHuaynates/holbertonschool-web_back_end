@@ -1,10 +1,11 @@
 export default function taskBlock(trueOrFalse) {
-  let task = false;  // Cambiado var a let
-  let task2 = true;  // Cambiado var a let
+  const task = false; // Se cambió let a const
+  const task2 = true; // Se cambió let a const
 
   if (trueOrFalse) {
-    let task = true;  // Cambiado var a let
-    let task2 = false;  // Cambiado var a let
+    const taskInBlock = true; // Se cambió let a const y se le dio un nombre diferente
+    const task2InBlock = false; // Se cambió let a const y se le dio un nombre diferente
+    return [taskInBlock, task2InBlock]; // Se agregó un return aquí para que devuelva el resultado del bloque condicional
   }
 
   return [task, task2];
