@@ -16,7 +16,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     return [
       {
         status: userResult.status,
-        value: userResult.status === 'fulfilled' ? userResult.value : `Error: ${userResult.reason.message}`
+        value: userResult.status === 'fulfilled' ? userResult.value : `Error: ${userResult.reason.message}`,
       },
       {
         status: photoResult.status,
