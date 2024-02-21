@@ -1,3 +1,5 @@
+// 6-final-user.js
+
 // Importar funciones desde 4-user-promise.js y 5-photo-reject.js
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
@@ -15,10 +17,11 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     // Retornar un array con el estado y el valor o error de cada promesa
     return [
       { status: 'fulfilled', value: { firstName, lastName } },
-      { status: 'rejected', reason: `Error: ${fileName} cannot be processed` } // Cambiado "value" a "reason" para reflejar correctamente el motivo del rechazo
+      { status: 'rejected', value: `Error: ${fileName} cannot be processed` }
     ];
   } catch (error) {
-    // Lanzar el error nuevamente, no es necesario un bloque try...catch aquí
+    // Manejar cualquier error interno y lanzarlo nuevamente
     throw error;
   }
 }
+
