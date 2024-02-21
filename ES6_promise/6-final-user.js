@@ -4,24 +4,29 @@ import uploadPhoto from './5-photo-reject';
 
 // Definir la función handleProfileSignup
 export default async function handleProfileSignup(firstName, lastName, fileName) {
-  // Llamar a las funciones signUpUser y uploadPhoto
-  const promises = [
-    signUpUser(firstName, lastName),
-    uploadPhoto(fileName)
-  ];
+  try {
+    // Llamar a las funciones signUpUser y uploadPhoto
+    const userPromise = signUpUser(firstName, lastName);
+    const photoPromise = uploadPhoto(fileName);
 
-  // Esperar a que todas las promesas se resuelvan o se rechacen
-  const results = await Promise.allSettled(promises);
+    // Esperar a que todas las promesas se resuelvan o se rechacen
+    const [userResult, photoResult] = await Promise.allSettled([userPromise, photoPromise]);
 
-  // Mapear los resultados para obtener el formato deseado
-  const profileResults = results.map(result => {
-    if (result.status === 'fulfilled') {
-      return { status: 'fulfilled', value: result.value };
-    } else {
-      return { status: 'rejected', value: result.reason };
-    }
-  });
-
-  // Retornar el arreglo de resultados
-  return profileResults;
+    // Retornar el arreglo de resultados
+    return [
+      {
+        status: userResult.status,
+        value: userResult.status === 'fulfilled' ? userResult.value : `Error: ${userResult.reason.message}`
+      },
+      {
+        status: photoResult.status,
+        value: photoResult.status === 'fulfilled' ? photoResult.value : `Error: ${photoResult.reason.message}`
+      }
+    ];
+  } catch (error) {
+    // Si hay un error en el manejo de las promesas, imprimir el error y retornar un arreglo vacío
+    console.error('Error:', error.message);
+    return [];
+  }
 }
+
