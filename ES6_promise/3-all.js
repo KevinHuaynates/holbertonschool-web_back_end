@@ -5,20 +5,18 @@ import { uploadPhoto, createUser } from './utils.js';
 
 // Definir la función handleProfileSignup
 export default function handleProfileSignup() {
-  // Retornar una nueva Promise
-  return new Promise((resolve, reject) => {
-    // Utilizar Promise.all() para manejar múltiples promesas
-    Promise.all([uploadPhoto(), createUser()])
-      .then(([photoResponse, userResponse]) => {
-        // Lograr el cuerpo (body) de la respuesta de uploadPhoto y el firstName y lastName de la respuesta de createUser
-        console.log(`${photoResponse.body} ${userResponse.firstName} ${userResponse.lastName}`);
-        // Resolver la Promise principal
-        resolve();
-      })
-      .catch(error => {
-        // En caso de error, logear "Signup system offline" y rechazar la Promise principal
+  // Utilizar Promise.allSettled() para manejar múltiples promesas
+  return Promise.allSettled([uploadPhoto(), createUser()])
+    .then(results => {
+      // Verificar si hay algún error en los resultados
+      const errors = results.filter(result => result.status === 'rejected');
+      if (errors.length > 0) {
+        // Si hay errores, imprimir "Signup system offline"
         console.error("Signup system offline");
-        reject(error);
-      });
-  });
+        return;
+      }
+      // Si no hay errores, lograr el cuerpo (body) de la respuesta de uploadPhoto y el firstName y lastName de la respuesta de createUser
+      const [photoResponse, userResponse] = results.map(result => result.value);
+      console.log(`${photoResponse.body} ${userResponse.firstName} ${userResponse.lastName}`);
+    });
 }
