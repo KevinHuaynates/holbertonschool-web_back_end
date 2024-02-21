@@ -21,3 +21,4 @@ export default async function handleProfileSignup() {
   }
 }
 
+// Eliminar los espacios en blanco al final del archivo
