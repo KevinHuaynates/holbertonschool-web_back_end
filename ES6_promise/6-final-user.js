@@ -20,8 +20,8 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
       },
       {
         status: photoResult.status,
-        value: photoResult.status === 'fulfilled' ? photoResult.value : `Error: ${photoResult.reason.message}`
-      }
+        value: photoResult.status === 'fulfilled' ? photoResult.value : `Error: ${photoResult.reason.message}`,
+      },
     ];
   } catch (error) {
     // Si hay un error en el manejo de las promesas, imprimir el error y retornar un arreglo vacío
@@ -29,4 +29,3 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     return [];
   }
 }
-
