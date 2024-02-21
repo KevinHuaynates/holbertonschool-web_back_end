@@ -1,7 +1,7 @@
 // 3-all.js
 
 // Importar funciones desde utils.js
-import { uploadPhoto, createUser } from './utils.js';
+import { uploadPhoto, createUser } from './utils';
 
 // Definir la función handleProfileSignup
 export default async function handleProfileSignup() {
@@ -20,4 +20,3 @@ export default async function handleProfileSignup() {
     console.error('Signup system offline');
   }
 }
-
