@@ -3,7 +3,7 @@
 // Definir la función getResponseFromAPI
 export default function getResponseFromAPI() {
   // Devolver una nueva Promise
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // Implementar la lógica para resolver la Promise
     // Por ejemplo, puedes simular una respuesta exitosa con un tiempo de espera
     setTimeout(() => {
