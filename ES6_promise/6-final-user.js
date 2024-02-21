@@ -1,8 +1,8 @@
 // 6-final-user.js
 
 // Importar funciones desde 4-user-promise.js y 5-photo-reject.js
-import signUpUser from './4-user-promise.js';
-import uploadPhoto from './5-photo-reject.js';
+import signUpUser from './4-user-promise';
+import uploadPhoto from './5-photo-reject';
 
 // Definir la función handleProfileSignup
 export default async function handleProfileSignup(firstName, lastName, fileName) {
