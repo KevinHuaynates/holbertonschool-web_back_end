@@ -1,34 +1,27 @@
-import { signUpUser } from './4-user-promise';
-import { uploadPhoto } from './5-photo-reject';
+// Importar las funciones necesarias
+import signUpUser from './4-user-promise';
+import uploadPhoto from './5-photo-reject';
 
+// Definir la función handleProfileSignup
 export default async function handleProfileSignup(firstName, lastName, fileName) {
-  const result = [];
+  // Llamar a las funciones signUpUser y uploadPhoto
+  const promises = [
+    signUpUser(firstName, lastName),
+    uploadPhoto(fileName)
+  ];
 
-  try {
-    const user = await signUpUser(firstName, lastName);
-    result.push({
-      status: 'fulfilled',
-      value: user,
-    });
-  } catch (error) {
-    result.push({
-      status: 'rejected',
-      value: error.toString(),
-    });
-  }
+  // Esperar a que todas las promesas se resuelvan o se rechacen
+  const results = await Promise.allSettled(promises);
 
-  try {
-    const photo = await uploadPhoto(fileName);
-    result.push({
-      status: 'fulfilled',
-      value: photo,
-    });
-  } catch (error) {
-    result.push({
-      status: 'rejected',
-      value: error.toString(),
-    });
-  }
+  // Mapear los resultados para obtener el formato deseado
+  const profileResults = results.map(result => {
+    if (result.status === 'fulfilled') {
+      return { status: 'fulfilled', value: result.value };
+    } else {
+      return { status: 'rejected', value: result.reason };
+    }
+  });
 
-  return result;
+  // Retornar el arreglo de resultados
+  return profileResults;
 }
