@@ -1,23 +1,11 @@
-// 9-try.js
-
-// Definir la función guardrail
-export default function guardrail(mathFunction) {
-  // Crear un array para almacenar los resultados y mensajes
-  const queue = [];
-  
+function guardrail(mathFunction) {
+  let queue = [];
   try {
-    // Ejecutar la función mathFunction y agregar el resultado a la queue
-    const result = mathFunction();
+    let result = mathFunction();
     queue.push(result);
   } catch (error) {
-    // Capturar cualquier error y agregar el mensaje de error a la queue
-    queue.push(error.message);
-  } finally {
-    // Agregar el mensaje "Guardrail was processed" a la queue
-    queue.push('Guardrail was processed');
+    queue.push(`Error: ${error.message}`);
   }
-  
-  // Retornar el array queue
+  queue.push('Guardrail was processed');
   return queue;
 }
-
