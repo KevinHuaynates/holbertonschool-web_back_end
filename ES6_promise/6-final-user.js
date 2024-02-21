@@ -16,7 +16,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
       // Retornar un array con el estado y el valor o error de cada promesa
       return results.map(result => ({
         status: result.status,
-        value: result.status === 'fulfilled' ? result.value : result.reason
+        value: result.status === 'fulfilled' ? result.value : result.reason.message
       }));
     });
 }
