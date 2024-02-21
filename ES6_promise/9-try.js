@@ -20,3 +20,4 @@ export default function guardrail(mathFunction) {
   // Retornar el array queue
   return queue;
 }
+
