@@ -11,8 +11,10 @@ function cleanSet(set, startString = '') {
       result += item.substring(startString.length) + '-';
     }
   }
-  // Eliminamos el último guión adicional
-  result = result.slice(0, -1);
+  // Eliminamos el último guión adicional si hay elementos coincidentes
+  if (result.length > 0) {
+    result = result.slice(0, -1);
+  }
   return result;
 }
 
