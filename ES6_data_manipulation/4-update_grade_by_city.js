@@ -6,13 +6,13 @@ function updateStudentGradeByCity(students, city, newGrades) {
   const filteredStudents = students.filter((student) => student.location === city);
 
   // Mapear sobre los estudiantes filtrados y actualizar sus calificaciones
-  const updatedStudents = filteredStudents.map(student => {
+  const updatedStudents = filteredStudents.map((student) => {
     // Buscar la calificación correspondiente en newGrades
-    const foundGrade = newGrades.find(grade => grade.studentId === student.id);
+    const foundGrade = newGrades.find((grade) => grade.studentId === student.id);
     // Si se encuentra la calificación, asignarla al estudiante, de lo contrario, asignar "N/A"
     return {
       ...student,
-      grade: foundGrade ? foundGrade.grade : "N/A"
+      grade: foundGrade ? foundGrade.grade : 'N/A';
     };
   });
 
