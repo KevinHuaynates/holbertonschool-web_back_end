@@ -12,7 +12,7 @@ function updateStudentGradeByCity(students, city, newGrades) {
     // Si se encuentra la calificación, asignarla al estudiante, de lo contrario, asignar "N/A"
     return {
       ...student,
-      grade: foundGrade ? foundGrade.grade : 'N/A';
+      grade: foundGrade ? foundGrade.grade : 'N/A'
     };
   });
 
