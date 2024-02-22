@@ -4,7 +4,7 @@
 function createInt8TypedArray(length, position, value) {
   // Verificar si la posición está dentro del rango
   if (position < 0 || position >= length) {
-    throw new Error("Position outside range");
+    throw new Error('Position outside range');
   }
 
   // Crear un nuevo ArrayBuffer con la longitud dada
