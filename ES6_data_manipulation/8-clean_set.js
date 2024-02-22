@@ -8,7 +8,7 @@ function cleanSet(set, startString = '') {
   for (const item of set) {
     // Comprobamos si el elemento es una cadena y si comienza con startString
     if (typeof item === 'string' && item.startsWith(startString)) {
-	    result += `${item.substring(startString.length)}-`;
+      result += `${item.substring(startString.length)}-`;
     }
   }
   // Eliminamos el último guión adicional si hay elementos coincidentes
