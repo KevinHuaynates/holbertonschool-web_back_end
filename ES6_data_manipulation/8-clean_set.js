@@ -1,6 +1,6 @@
 function cleanSet(set, startString = '') {
-  // Comprobación de si startString no es una cadena
-  if (typeof startString !== 'string') {
+  // Comprobación de si startString no es una cadena o si es una cadena vacía
+  if (typeof startString !== 'string' || startString === '') {
     return '';
   }
 
