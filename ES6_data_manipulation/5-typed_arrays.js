@@ -10,11 +10,11 @@ function createInt8TypedArray(length, position, value) {
   // Crear un nuevo ArrayBuffer con la longitud dada
   const buffer = new ArrayBuffer(length);
 
-  // Crear una vista TypedArray para manipular el ArrayBuffer
-  const view = new Int8Array(buffer);
+  // Crear un DataView para manipular el ArrayBuffer
+  const view = new DataView(buffer);
 
-  // Asignar el valor en la posición especificada
-  view[position] = value;
+  // Asignar el valor Int8 en la posición especificada
+  view.setInt8(position, value);
 
   return view;
 }
