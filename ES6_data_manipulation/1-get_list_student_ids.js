@@ -8,7 +8,7 @@ function getListStudentIds(array) {
   }
 
   // Utilizar el método map para obtener los ids de los estudiantes
-  return (array.map(student => student.id));
+  return array.map((student) => student.id);
 }
 
 // Exportar la función getListStudentIds para que pueda ser utilizada en otros archivos
