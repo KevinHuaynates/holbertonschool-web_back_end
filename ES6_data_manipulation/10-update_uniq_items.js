@@ -8,7 +8,7 @@ function updateUniqueItems(map) {
   }
 
   // Iterar sobre cada entrada del mapa
-  for (let [item, quantity] of map.entries()) {
+  for (const [item, quantity] of map.entries()) {
     // Verificar si la cantidad es 1
     if (quantity === 1) {
       // Si la cantidad es 1, actualizar la cantidad a 100
