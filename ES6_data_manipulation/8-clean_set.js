@@ -1,7 +1,12 @@
-function cleanSet(set, startString) {
+function cleanSet(set, startString = '') {
+  // Comprobación de si startString no es una cadena
+  if (typeof startString !== 'string') {
+    return '';
+  }
+
   let result = '';
   for (const item of set) {
-    if (item.startsWith(startString)) {
+    if (typeof item === 'string' && item.startsWith(startString)) {
       result += item.substring(startString.length) + '-';
     }
   }
@@ -11,3 +16,4 @@ function cleanSet(set, startString) {
 }
 
 export default cleanSet;
+
