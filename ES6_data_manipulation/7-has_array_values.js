@@ -3,7 +3,7 @@
 // Definir la función hasValuesFromArray
 function hasValuesFromArray(set, array) {
   // Iterar sobre cada elemento del array
-  for (let value of array) {
+  for (const value of array) {
     // Verificar si el elemento no está presente en el conjunto
     if (!set.has(value)) {
       return false; // Si no está presente, devolver falso
