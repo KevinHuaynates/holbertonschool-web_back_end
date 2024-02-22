@@ -6,6 +6,7 @@ function cleanSet(set, startString = '') {
 
   let result = '';
   for (const item of set) {
+    // Comprobamos si el elemento es una cadena y si comienza con startString
     if (typeof item === 'string' && item.startsWith(startString)) {
       result += item.substring(startString.length) + '-';
     }
@@ -16,4 +17,3 @@ function cleanSet(set, startString = '') {
 }
 
 export default cleanSet;
-
