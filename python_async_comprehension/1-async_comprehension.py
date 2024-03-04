@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-This module defines a coroutine that collects 10 random numbers using async comprehension.
+This module defines a coroutine using async comprehension.
 """
-
 import asyncio
 from typing import List
 from random import uniform
