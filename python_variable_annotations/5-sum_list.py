@@ -1,16 +1,13 @@
-#!/usr/bin/env python3
 from typing import List
 
 def sum_list(input_list: List[float]) -> float:
-    """Return the sum of a list of floats.
+    """
+    Calculates the sum of a list of floats.
 
     Args:
-        input_list: The list of floats to sum.
+        input_list (List[float]): The list of floats.
 
     Returns:
-        The sum of the list of floats.
+        float: The sum of the floats in the input list.
     """
-    total = 0
-    for num in input_list:
-        total += num
-    return total
+    return sum(input_list)
