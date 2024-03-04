@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 """
-Module to define a function to get the floor of a float.
+Module to define a coroutine to measure the runtime of parallel comprehensions.
 """
 from typing import List
 import asyncio
-import time
-
+from time import perf_counter
 from async_comprehension import async_comprehension
 
 
 async def measure_runtime() -> float:
-    """Measures the total runtime of four parallel async comprehensions.
-
-    Returns:
-        Total runtime in seconds.
     """
-    start = time.time()
+    Coroutine that measures the runtime of executing four times in parallel.
+    """
+    start_time = perf_counter()
 
-    coroutines = [async_comprehension() for _ in range(4)]
-    await asyncio.gather(*coroutines)
+    await asyncio.gather(
+        async_comprehension(),
+        async_comprehension(),
+        async_comprehension(),
+        async_comprehension()
+    )
 
-    end = time.time()
+    end_time = perf_counter()
 
-    return end - start
+    return end_time - start_time
