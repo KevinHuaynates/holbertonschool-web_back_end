@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
-from typing import Callable, Float
+from typing import Callable
 
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
-    """Return a function that multiplies a float by `multiplier`.
+    """
+    Returns a function that multiplies a float by a given multiplier.
 
     Args:
-        multiplier: The float to multiply by.
+        multiplier (float): The multiplier to be used.
 
     Returns:
-        A function that multiplies a float by `multiplier`.
+        Callable[[float], float]: A function that takes a float and returns the product of the float and the multiplier.
     """
-    return lambda x: x * multiplier
+    def multiplier_function(x: float) -> float:
+        return x * multiplier
+    
+    return multiplier_function
