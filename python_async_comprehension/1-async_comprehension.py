@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 """
-This module defines a coroutine that collects 10 random numbers using async comprehension.
+Module to define a function to get the floor of a float.
 """
-
-import asyncio
 from typing import List
-from random import uniform
+import asyncio
 
-async_generator = __import__('0-async_generator').async_generator
+from async_generator import async_generator
+
 
 async def async_comprehension() -> List[float]:
-    """Coroutine that collects 10 random numbers using async comprehension."""
-    random_numbers = []
-    async for num in async_generator():
-        random_numbers.append(num)
-        if len(random_numbers) == 10:
-            break
-    return random_numbers
+    """Collects 10 random numbers using an async comprehensing over async_generator.
+
+    Returns:
+        List of 10 random numbers.
+    """
+    return [number async for number in async_generator()]
