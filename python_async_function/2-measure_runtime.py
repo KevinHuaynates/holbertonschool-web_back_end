@@ -3,6 +3,7 @@
 Function to measure the runtime of the wait_n coroutine.
 """
 
+import asyncio
 import time
 from typing import Callable
 
@@ -11,11 +12,11 @@ wait_n = __import__('1-concurrent_coroutines').wait_n
 
 def measure_time(n: int, max_delay: int) -> float:
     """
-    Measure the runtime of wait_n(n, max_delay) and return the average time per coroutine.
+    Measure the runtime of wait_n(n, max_delay) and coroutine.
 
     Args:
         n (int): Number of times to spawn wait_random coroutine.
-        max_delay (int): Maximum delay in seconds for each wait_random coroutine.
+        max_delay (int): Maximum delay in seconds for coroutine.
 
     Returns:
         float: Average time per coroutine.
@@ -25,11 +26,3 @@ def measure_time(n: int, max_delay: int) -> float:
     end_time = time.time()
     total_time = end_time - start_time
     return total_time / n
-
-# For testing purposes
-if __name__ == "__main__":
-    import asyncio
-
-    n = 5
-    max_delay = 9
-    print(measure_time(n, max_delay))
