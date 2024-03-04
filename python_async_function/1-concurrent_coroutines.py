@@ -1,33 +1,35 @@
 #!/usr/bin/env python3
 """
-This module contains an asynchronous routine.
+Asynchronous routine that executes multiple coroutines concurrently.
 """
 
 import asyncio
 from typing import List
+from random import uniform
+from asyncio import Task
 
-from _1_basic_async_syntax import wait_random
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int = 10) -> List[float]:
+async def wait_n(n: int, max_delay: int) -> List[float]:
     """
-    This async routine takes in 2 int arguments.
-
-    wait_n should return the list of all the delays (float values).
+    Asynchronous routine that executes multiple coroutines concurrently.
 
     Args:
-        n: The number of times to spawn wait_random.
-        max_delay: The maximum delay in seconds.
+        n (int): Number of times to spawn wait_random coroutine.
+        max_delay (int): Maximum delay in seconds for each wait_random.
 
     Returns:
-        A list of all the delays (float values) in ascending order.
+        List[float]: List of delays in ascending order.
     """
+    delays: List[float] = []
+    tasks: List[Task] = []
 
-    # Create a list of tasks to spawn
-    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
+    for _ in range(n):
+        tasks.append(asyncio.create_task(wait_random(max_delay)))
 
-    # Spawn the tasks
-    results = await asyncio.gather(*tasks)
+    for task in asyncio.as_completed(tasks):
+        delay = await task
+        delays.append(delay)
 
-    # Return the list of results in ascending order
-    return sorted(results)
+    return delays
