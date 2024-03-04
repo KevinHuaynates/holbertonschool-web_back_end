@@ -9,13 +9,13 @@ import random
 
 async def wait_random(max_delay: int = 10) -> float:
     """
-    This coroutine takes in an integer argument (max_delay, with a default value of 10).
+    This coroutine takes in an argument.
 
     Args:
         max_delay: The maximum delay in seconds.
 
     Returns:
-        A random delay between 0 and max_delay (included and float value) seconds.
+        A random delay between 0 and max_delay seconds.
     """
 
     # Generate a random delay between 0 and max_delay seconds
