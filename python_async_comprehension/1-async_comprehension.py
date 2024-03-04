@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
-This module defines a coroutine using async comprehension.
+Module to define a coroutine to collect 10 random numbers using async comprehensions.
 """
 import asyncio
 from typing import List
 from random import uniform
 
-async_generator = __import__('0-async_generator').async_generator
-
+async def async_generator() -> float:
+    """
+    Coroutine that yields a random number between 0 and 10.
+    """
+    for _ in range(10):
+        await asyncio.sleep(1)
+        yield uniform(0, 10)
 
 async def async_comprehension() -> List[float]:
-    """Coroutine that collects 10 random numbers using async comprehension."""
-    async_gen = async_generator()
-    random_numbers = []
-    async for num in async_gen:
-        random_numbers.append(num)
-        if len(random_numbers) == 10:
-            break
-    return random_numbers
+    """
+    Coroutine that collects 10 random numbers using async comprehensions.
+    """
+    return [num async for num in async_generator()]
