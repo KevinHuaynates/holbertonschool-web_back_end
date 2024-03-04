@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Module to define a function to get the floor of a float.
+"""
 from typing import Callable
 
 
